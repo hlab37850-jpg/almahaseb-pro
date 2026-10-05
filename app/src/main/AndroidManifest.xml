@@ -8,6 +8,9 @@
   <activity android:name=".Bills2Activity" android:screenOrientation="portrait"/>
   <activity android:name=".ReportsListActivity" android:screenOrientation="portrait"/>
   <activity android:name=".ReportActivity" android:screenOrientation="portrait"/>
+  <activity android:name=".CustomersActivity" android:screenOrientation="portrait"/>
+  <activity android:name=".ItemsActivity" android:screenOrientation="portrait"/>
+  <activity android:name=".SettingsActivity" android:screenOrientation="portrait"/>
   <activity android:name=".MainActivity" android:screenOrientation="portrait" android:exported="true">
    <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
   </activity>
