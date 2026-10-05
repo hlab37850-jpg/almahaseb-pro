@@ -72,3 +72,32 @@ These are database facts, not invented UI defaults.
 ## 21. Migration precision rule
 
 The migration file contains historical definitions followed by drops/replacements. The **last effective definition in migration order** is the required reconstruction reference.
+
+
+## 22. Verified reporting views and formulas
+
+### cus_tr_curr_view
+The mature customer transaction view joins groups, customers, transactions, currency, customer type and account tree, and UNIONs both transaction sides: rows where transactions.cus_id equals the customer and rows where transactions.t_cus_id equals the customer. It exposes converted OUT amounts using transaction/current currency prices plus group/type/account/user/address fields.
+
+### transactions_tot_v
+Groups transactions by currency, source customer, target customer and in, exposing summed OUT, latest normalized date, count and latest transaction ID.
+
+### cus_curr
+Builds customer balances from transactions_tot_v and customers_tree_v. It separately derives credit/debit totals, computes balance as `sum(case when t_cus_id=customer then -out else in*out end)`, tracks last date, days late and transaction count, and UNIONs customers with no transactions as zero-balance rows.
+
+### item_avg_cost2
+Groups purchase quantities and cost totals by item/currency/unit price/date, then UNIONs opening inventory quantities/costs.
+
+### item_avg_cost4
+Produces item movement rows for sales/purchases, stock transfers and opening inventory. Returns negate the transaction type. A transfer is represented once for the source branch and once for the destination branch with opposite transaction sign.
+
+### profit_loss_vw
+The mature definition derives daily profit/loss components from cus_tr_curr_view and items_cost_calc: Net Sales, Cost Sales, Discount.IN, Income and Outcome. Sales/discount calculations use transaction-side direction and special negative customer IDs. Cost of sales comes from items_cost_calc using purchase/opening/return quantity-cost calculations. Income and Outcome are filtered by account-tree ID prefixes (4xx and 3xx respectively) with explicit exclusions.
+
+## 23. Balance semantics that must not be simplified
+
+The database does not treat `in=1` as a universal debit/credit meaning. Balance depends on whether the customer is the transaction target (`t_cus_id`) or source (`cus_id`). Currency conversion, account-tree membership, special negative IDs, branch direction, return sign and opening inventory all participate in reporting.
+
+## 24. Reconstruction consequence
+
+Report screens cannot be implemented accurately from labels/layouts alone. Their query layer and database views are part of the required reconstruction contract. No application/UI code is authorized yet.
