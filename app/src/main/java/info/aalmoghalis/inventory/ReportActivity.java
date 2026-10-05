@@ -20,7 +20,7 @@ public final class ReportActivity extends AppCompatActivity {
  private void load(int type,ListView list){
   ArrayList<String> rows=new ArrayList<>();SQLiteDatabase d=db.getReadableDatabase();
   String sql=null;String[] args=null;
-  if(type==2||type==3){sql="SELECT id,date_,amount,paid_amount,remarks FROM bills WHERE tr_type=? ORDER BY id DESC";args=new String[]{String.valueOf(type==2?2:1));}
+  if(type==2||type==3){sql="SELECT id,date_,amount,paid_amount,remarks FROM bills WHERE tr_type=? ORDER BY id DESC";args=new String[]{String.valueOf(type==2?2:1)};}
   else if(type==4){sql="SELECT id,date_,in_amount,out_amount,remarks FROM transactions ORDER BY id DESC";}
   if(sql!=null)try(Cursor c=d.rawQuery(sql,args)){while(c.moveToNext()){StringBuilder s=new StringBuilder("#").append(c.getLong(0));for(int i=1;i<c.getColumnCount();i++)s.append("  ").append(c.getString(i));rows.add(s.toString());}}
   if(rows.isEmpty())rows.add("لا توجد سجلات");
