@@ -23,6 +23,7 @@ public final class MainActivity extends AppCompatActivity {
   list.setOnItemClickListener((p,v,pos,id)->{
    if(pos==7){finish();return;}
    if(pos==3) startActivity(new Intent(this,AccountTreeMainActivity.class));
+   else if(pos==4) startActivity(new Intent(this,SettingsActivity.class));
    drawer.closeDrawer(Gravity.START);
   });
   buildRootGrid();
