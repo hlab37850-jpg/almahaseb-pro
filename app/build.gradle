@@ -1,0 +1,11 @@
+plugins { id 'com.android.application' }
+
+android { namespace 'info.aalmoghalis.inventory'; compileSdk 35
+    defaultConfig { applicationId 'info.aalmoghalis.inventory'; minSdk 21; targetSdk 35; versionCode 170; versionName 'Inv1.170' }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+    implementation 'com.google.android.material:material:1.12.0'
+}
