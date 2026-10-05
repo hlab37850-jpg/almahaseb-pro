@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">محاسب سوفت</string>
+    <string name="drawer_backup">حفـظ نسخة إحتياطية</string>
+    <string name="drawer_restore">إسترجاع قاعدة البيانات</string>
+    <string name="drawer_drive">جوجل درايف</string>
+    <string name="drawer_accounts">دليل الحسابات</string>
+    <string name="drawer_settings">إعـدادات</string>
+    <string name="drawer_support">للتــواصـل والـدعم</string>
+    <string name="drawer_about">حــول البـرنـامج</string>
+    <string name="drawer_exit">خروج</string>
+    <string name="main_cash">قبض/صرف</string>
+    <string name="main_sales">المبيعات</string>
+    <string name="main_accounts">الحسابات</string>
+    <string name="main_purchases">المشتريات</string>
+</resources>
